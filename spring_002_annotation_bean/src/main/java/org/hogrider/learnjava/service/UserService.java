@@ -41,7 +41,10 @@ public class UserService {
                     if (dbPassword.equals(shaEncode(password))) {
                         Long dbId = rs.getLong("id");
                         String dbName = rs.getString("name");
-                        return new User(dbId, email, dbPassword, dbName);
+                        User user = new User(dbId, email, dbPassword, dbName);
+
+                        mailService.sendLoginMail(user);
+                        return  user;
                     }
                 } else {
                     throw new RuntimeException("email not exist.");

@@ -47,6 +47,13 @@
             <version>2.0.0-alpha0</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!--以便我们能重写Bean的初始化和销毁时，添加一些额外功能，例如重写init(),shutdown()方法。-->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
     </dependencies>
 
 </project>
