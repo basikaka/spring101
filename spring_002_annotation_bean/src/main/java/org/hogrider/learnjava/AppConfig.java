@@ -26,8 +26,10 @@ public class AppConfig {
 
     public static void main(String[] args) throws SQLException {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        UserService userService = context.getBean(UserService.class);
-        User user = userService.login("JohnSon@example.com", "password" );
-        System.out.println(user.getName());
+//        UserService userService = context.getBean(UserService.class);
+//        User user = userService.login("JohnSon@example.com", "password" );
+//        System.out.println(user.getName());
+        AppService appService =  context.getBean(AppService.class);
+        appService.logoPrint();
     }
 }
