@@ -1,6 +1,7 @@
 package org.hogrider.learnjava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,13 @@ public class MailService {
     // 注入第三方的Bean: ZoneId，如果不存在，则使用系统默认的
     @Autowired(required = false)
     private ZoneId zoneId = ZoneId.systemDefault();
+
+    @Value("#{smtpConfig.host}")
+    private String host;
+    @Value("#{smtpConfig.port}")
+    private String port;
+
+
 
     /***
      * Spring容器会对Bean做如下初始化流程：
@@ -38,7 +46,7 @@ public class MailService {
     }
 
     public void sendLoginMail(User user) {
-        System.err.println(String.format("Hi, %s! You are logged in at %s", user.getName(), getTime()));
+        System.err.println(String.format("smtp server: %s:%s Hi, %s! You are logged in at %s",this.host, this.port, user.getName(), getTime()));
     }
 
     public void sendRegistrationMail(User user) {
